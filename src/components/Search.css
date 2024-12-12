@@ -1,0 +1,31 @@
+.search{
+    margin: 20px 50px 0;
+    display: flex;
+}
+
+.search input
+{
+    padding: 20px 10px 10px;    
+    border: 0;
+    width: 100%;
+    color: #999;
+    font-size: 24px;
+    text-align: center;
+}
+
+.search input:focus{
+    outline: none;
+    border-bottom: 1px solid #CCC;
+}
+
+.btn{
+    width: 120px;
+    padding: 6px 16px;
+    background: rgb(0,91,151);
+    color: #FFF;
+    border: 2px solid;
+    font-weight: bold;
+    border-radius: 6px;
+    box-shadow: inset 1px 1px 4px 2px #FFF;
+    cursor: pointer;
+}

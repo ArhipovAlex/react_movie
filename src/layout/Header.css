@@ -1,0 +1,17 @@
+.header{
+    background-color: darkblue;
+    color: aliceblue;
+    padding: 20px;
+}
+.header .wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    font-weight: bold;
+    font-size: 20px;
+}
+.right{
+    text-align: right;
+}
