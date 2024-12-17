@@ -10,7 +10,7 @@ class Search extends React.Component {
     // }
     state =
         {
-            search: "",
+            search: "Terminator",
             type: "all",
             page:1,
             totalPages:0
@@ -35,11 +35,26 @@ class Search extends React.Component {
             () => {this.props.searchMovie(this.state.search, this.state.type, this.state.page)}
             )
         }
+    firstPage=()=>
+    {
+        this.setState(
+            () => ({page:1}),
+            () => {this.props.searchMovie(this.state.search, this.state.type, this.state.page)}
+        )
+    }
     nextPage=() =>
         {
         this.setState(
-            () => ({page:this.state.page + 1}),
+            () => ({page: this.state.page<Math.ceil(this.props.totalMovies/10)? this.state.page + 1 : this.state.page}),
             () => {this.props.searchMovie(this.state.search, this.state.type, this.state.page)} 
+            )
+        }
+        lastPage=()=>
+        {
+            this.setState(
+                //()=>({totalPages:this.props.totalMovies/10}),
+                ()=>({page:Math.ceil(this.props.totalMovies/10)}),
+                ()=>{this.props.searchMovie(this.state.search, this.state.type, this.state.page)}
             )
         }
     setPage=(pageNumber)=>
@@ -52,7 +67,7 @@ class Search extends React.Component {
         }
     render() {
         let moviesPerPage =10;
-        let totalPages=this.props.totalMovies/moviesPerPage;
+        let totalPages= Math.ceil(this.props.totalMovies/moviesPerPage);
         let lastIndex = totalPages <= 10 ? totalPages + 1 : this.state.page+moviesPerPage;
         let firstIndex=totalPages <= 10 ? lastIndex - moviesPerPage + lastIndex + 1 : lastIndex - moviesPerPage;
         let pageNumbers=[];
@@ -101,7 +116,6 @@ class Search extends React.Component {
                         <label htmlFor='games'>Games</label>
                     </div>
                 </div>
-
                 <div className='search'>
                     <input
                         type="search"
@@ -114,9 +128,11 @@ class Search extends React.Component {
                         Search
                     </button>
                 </div>
-
                 <div className='navigator'>
-                    <button className="btn" onClick={this.prevPage}>Previous</button>
+                    <div className='main_btns'>
+                        <button className="btn" onClick={this.firstPage}>First</button>
+                        <button className="btn" onClick={this.prevPage}>Previous</button>
+                    </div>
                     <div className='items'>
                         {
                             pageNumbers
@@ -137,7 +153,15 @@ class Search extends React.Component {
                             )
                         }
                     </div>
-                    <button className="btn" onClick={this.nextPage}>Next</button>
+                    <div className='main_btns'>
+                        <button className="btn" onClick={this.nextPage}>Next</button>
+                        <button className="btn" onClick={this.lastPage}>Last</button>
+                    </div>
+                </div>
+                <div className="debug">
+                    {this.state.page}<br/>
+                    {this.state.totalPages}<br/>
+                    {totalPages}
                 </div>
             </>
         )

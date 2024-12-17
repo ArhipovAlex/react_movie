@@ -30,11 +30,14 @@
     cursor: pointer;
 }
 .navigator{
+    margin-left: 48px;
+    margin-right: 48px;
     display: flex;
     justify-content: space-between;
 }
 .items .btn{
     width: 44px;
+    margin: 0px;
 }
 .radio{
     display: flex;
@@ -48,4 +51,8 @@
 .radio label{
     font-size: 20px;
     margin-right: 5px;
+}
+
+.main_btns{
+    width: 22%;
 }
